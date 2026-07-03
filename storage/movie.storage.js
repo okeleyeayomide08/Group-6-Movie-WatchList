@@ -8,7 +8,7 @@ const moviesDataPath = path.join(
   "movies.json",
 );
 
-// Reads the data and sends the parsed data, if data is empty returns [] and if error logs the error and return []
+// Reads the data and sends the parsed data, if data is empty returns [] and if error like files is empty return [] and logs other errors
 async function readMovies() {
   try {
     const data = await fs.readFile(moviesDataPath, "utf8");
@@ -19,9 +19,11 @@ async function readMovies() {
 
     return JSON.parse(data);
   } catch (error) {
-    console.log("Error reading movies:", error.message);
+    if (error.code === "ENOENT") {
+      return [];
+    }
 
-    return [];
+    throw error;
   }
 }
 
