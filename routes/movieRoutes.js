@@ -26,7 +26,7 @@ router.put(
   movieController.updateMovie,
 );
 
-// Delete a movie
+// Delete a movie with movies id
 router.delete("/resources/:id", movieController.deleteMovie);
 
 export default router;
