@@ -1,4 +1,4 @@
-import crypto from 'crypto';
+import crypto from "crypto";
 import { readMovies, writeMovies } from "./movie.storage.js";
 
 export async function getAllMovies() {
@@ -7,7 +7,6 @@ export async function getAllMovies() {
 
 export async function getMovieById(id) {
   const movies = await readMovies();
-
   return movies.find((movie) => movie.id === id);
 }
 
@@ -18,10 +17,11 @@ export async function createMovie(movie) {
   const newMovie = {
     id: crypto.randomUUID(),
     title: movie.title,
-    director: movie.director,
-    year: movie.year,
+    director: movie.director ?? null,
+    releaseYear: movie.releaseYear,
     genre: movie.genre,
     watched: movie.watched,
+    rating: movie.rating ?? null,
     createdAt: now,
     updatedAt: now,
   };
@@ -37,9 +37,12 @@ export async function updateMovie(id, movie) {
   if (index === -1) {
     return null;
   }
+
+  const { id: _id, createdAt: _createdAt, ...safeUpdates } = movie;
+
   movies[index] = {
     ...movies[index],
-    ...movie,
+    ...safeUpdates,
     updatedAt: new Date().toISOString(),
   };
   await writeMovies(movies);
@@ -59,6 +62,5 @@ export async function deleteMovie(id) {
 
 export async function getUnwatchedMovies() {
   const movies = await readMovies();
-
   return movies.filter((movie) => movie.watched === false);
 }
