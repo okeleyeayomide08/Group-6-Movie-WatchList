@@ -1,0 +1,13 @@
+[
+  {
+    "id": "7335b7bc-02b7-46b7-aa8a-ad04a6ada4f4",
+    "title": "Inception",
+    "director": "Christopher Nolan",
+    "releaseYear": 2010,
+    "genre": "Sci-Fi",
+    "watched": true,
+    "rating": 9,
+    "createdAt": "2026-07-04T11:42:47.101Z",
+    "updatedAt": "2026-07-04T11:42:47.101Z"
+  }
+]

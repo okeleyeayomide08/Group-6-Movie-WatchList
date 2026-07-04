@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { readMovies, writeMovies } from "./movie.storage.js";
+import { readMovies, writeMovies } from "../storage/movie.storage.js";
 
 export async function getAllMovies() {
   return await readMovies();
