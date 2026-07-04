@@ -9,5 +9,27 @@
     "rating": 9,
     "createdAt": "2026-07-04T11:42:47.101Z",
     "updatedAt": "2026-07-04T11:42:47.101Z"
+  },
+  {
+    "id": "641d0cd6-3462-431d-bea8-34e658cfd411",
+    "title": "Avengers: Endgame",
+    "director": null,
+    "releaseYear": 2019,
+    "genre": "Action",
+    "watched": true,
+    "rating": 9,
+    "createdAt": "2026-07-04T21:29:21.337Z",
+    "updatedAt": "2026-07-04T21:29:21.337Z"
+  },
+  {
+    "id": "a39dc44c-01f3-422c-a115-9f6bb6200a08",
+    "title": "black eyes",
+    "director": null,
+    "releaseYear": 2019,
+    "genre": "Action",
+    "watched": true,
+    "rating": 9,
+    "createdAt": "2026-07-04T21:30:08.695Z",
+    "updatedAt": "2026-07-04T21:30:08.695Z"
   }
 ]
