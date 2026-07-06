@@ -1,8 +1,13 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+// edited by Mavery: use a Node-compatible dirname helper for ESM projects.
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const moviesDataPath = path.join(
-  import.meta.dirname,
+  __dirname,
   "..",
   "data",
   "movies.json",
@@ -35,6 +40,8 @@ async function writeMovies(movies) {
     await fs.writeFile(moviesDataPath, jsonString, "utf8");
   } catch (error) {
     console.log(`Error writing file: ${error.message}`);
+    // edited by Mavery: rethrow so controllers can return an error instead of silently succeeding.
+    throw error;
   }
 }
 

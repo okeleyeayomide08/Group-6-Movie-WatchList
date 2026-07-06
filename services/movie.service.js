@@ -14,6 +14,7 @@ export async function createMovie(movie) {
   const movies = await readMovies();
 
   const now = new Date().toISOString();
+  // generate server-owned fields and keep defaults in one place.
   const newMovie = {
     id: crypto.randomUUID(),
     title: movie.title,
@@ -38,7 +39,8 @@ export async function updateMovie(id, movie) {
     return null;
   }
 
-  const { id: _id, createdAt: _createdAt, ...safeUpdates } = movie;
+  // prevent clients from overwriting server-owned id/timestamps.
+  const { id: _id, createdAt: _createdAt, updatedAt: _updatedAt, ...safeUpdates } = movie;
 
   movies[index] = {
     ...movies[index],
@@ -63,4 +65,10 @@ export async function deleteMovie(id) {
 export async function getUnwatchedMovies() {
   const movies = await readMovies();
   return movies.filter((movie) => movie.watched === false);
+}
+
+// added the service used by GET /resources/watched.
+export async function getWatchedMovies() {
+  const movies = await readMovies();
+  return movies.filter((movie) => movie.watched === true);
 }

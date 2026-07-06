@@ -7,7 +7,7 @@ const router = express.Router();
 // Get all movies
 router.get("/resources", movieController.getAllMovies);
 
-// Get watched movies (optional if your assignment includes it)
+// Get watched movies
 router.get("/resources/watched", movieController.getWatchedMovies);
 
 // Get unwatched movies

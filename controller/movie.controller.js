@@ -9,13 +9,13 @@ export async function getAllMovies(req, res, next) {
   }
 }
 
-export async function getWatchedMovies(req, res, next){
-    try {
-        const movies = await movieService.getWatchedMovies();
-        res.status(200).json(movies);
-    }catch (error){
-        next(error);
-    }
+export async function getWatchedMovies(req, res, next) {
+  try {
+    const movies = await movieService.getWatchedMovies();
+    res.status(200).json(movies);
+  } catch (error) {
+    next(error);
+  }
 }
 
 export async function getUnwatchedMovies(req, res, next) {
