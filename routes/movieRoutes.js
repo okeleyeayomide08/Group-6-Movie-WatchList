@@ -1,35 +1,32 @@
-/*
- if you are done with the controllers change. import it here and change this (req, res) => {
-  res.send("Get all movies");
-} to the name of the function of each controller route
-*/
-
 import express from "express";
+import * as movieController from "../controller/movie.controller.js";
+import { validateMovieMiddleware } from "../middleware/validation.js";
 
 const router = express.Router();
 
-router.get("/resources", (req, res) => {
-  res.send("Get all movies");
-});
+// Get all movies
+router.get("/resources", movieController.getAllMovies);
 
-router.get("/resources/unwatched", (req, res) => {
-  res.send("Get unwatched movies");
-});
+// Get watched movies (optional if your assignment includes it)
+router.get("/resources/watched", movieController.getWatchedMovies);
 
-router.get("/resources/:id", (req, res) => {
-  res.send("Get one movie");
-});
+// Get unwatched movies
+router.get("/resources/unwatched", movieController.getUnwatchedMovies);
 
-router.post("/resources", (req, res) => {
-  res.send("Create a movie");
-});
+// Get one movie
+router.get("/resources/:id", movieController.getMovieById);
 
-router.put("/resources/:id", (req, res) => {
-  res.send("Update a movie");
-});
+// Create a movie
+router.post("/resources", validateMovieMiddleware, movieController.createMovie);
 
-router.delete("/resources/:id", (req, res) => {
-  res.send("Delete a movie");
-});
+// Update a movie
+router.put(
+  "/resources/:id",
+  validateMovieMiddleware,
+  movieController.updateMovie,
+);
+
+// Delete a movie with movies id
+router.delete("/resources/:id", movieController.deleteMovie);
 
 export default router;
